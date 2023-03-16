@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+
 import { JobsList } from './components/JobsList/jobsList'
-import React, { useReducer, useCallback } from 'react';
+import React, { useReducer, useCallback, useEffect } from 'react';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -115,3 +115,4 @@ export function App() {
     </div>
   );
 };
+
