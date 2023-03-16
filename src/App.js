@@ -68,7 +68,7 @@ const getUrl = (page, what, where, distance, location0, location1, location2, lo
   return searchUrl
 };
 
-function App() {
+export function App() {
     const initialState = {
       jobs: {},
       page: 1,
@@ -111,5 +111,3 @@ function App() {
     <p>Hi</p>
   );
 };
-
-export default App;
