@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useCallback, useReducer } from 'react';
-import { JobsList } from 'components/JobsList';
+import React, { useEffect, useReducer, useCallback } from 'react';
+import { JobsList } from './components/JobsList/jobsList';
 
-import logo from './logo.svg';
 import './App.css';
 
 function reducer(state, action) {
   switch (action.type) {
     case 'setJobs':
       return {...state, jobs: action.payload };
+    case 'setPage':
+      return {...state, page: action.payload };
     case 'setWhat':
       return {...state, what: action.payload };
     case 'setWhere':
@@ -47,26 +48,33 @@ function reducer(state, action) {
   }
 }
 
-function getUrl(what, where, distance, location0, location1, location2, location3, location4, location5, location6, location7, category, salary_min, salary_max, full_time, part_time, company) {
-  let searchUrl='https://api.adzuna.com/v1/api/jobs/gb/search/100?app_id=76dbecca&app_key=cdfe40cea1339c14198b7f6468e24d10';
-  let params = [what, where, distance, location0, location1, location2, location3, location4, location5, location6, location7, category, salary_min, salary_max, full_time, part_time, company];
-  let values = ["what", "where", "distance", "location0", "location1", "location2", "location3", "location4", "location5", "location6", "location7", "category", "salary_min", "salary_max", "full_time", "part_time", "company"]
+const getUrl = (page, what, where, distance, location0, location1, location2, location3, location4, location5, location6, location7, category, salary_min, salary_max, full_time, part_time, company) => {
+  let searchUrl='https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=76dbecca&app_key=cdfe40cea1339c14198b7f6468e24d10';
+  let params = [page, what, where, distance, location0, location1, location2, location3, location4, location5, location6, location7, category, salary_min, salary_max, full_time, part_time, company];
+  let values = ["page", "what", "where", "distance", "location0", "location1", "location2", "location3", "location4", "location5", "location6", "location7", "category", "salary_min", "salary_max", "full_time", "part_time", "company"]
   let count = -1
 
   params.forEach(param => {
     count++
-    if (param !== -1 && param !== '') {
-      searchUrl += `&${values[count]}=${param}`
+    console.log(count)
+    if(count <= 0) {
+      searchUrl = `https://api.adzuna.com/v1/api/jobs/gb/search/${param}?app_id=76dbecca&app_key=cdfe40cea1339c14198b7f6468e24d10`;
+    };
+    if (count > 0) {
+      if (param !== -1 && param !== '') {
+        searchUrl += `&${values[count]}=${param}`
+      }
     }
   })
-
+  console.log('url from in geturl ' + searchUrl);
   return searchUrl
 };
 
 export const App = () => {
 
   const initialState = {
-    jobs: undefined,
+    jobs: {},
+    page: 1,
     what: '',
     where: '',
     distance: -1,
@@ -88,14 +96,28 @@ export const App = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  async function fetchFilteredJobs(url){
+  const fetchFilteredJobs = useCallback(async () => {
+    const url = getUrl(state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company)
+    console.log('url from in fetch ' + url)
     const response = await fetch(url);
     const data = await response.json();
+    console.log('data from fetch:')
+    console.log(data);
     dispatch({type: 'setJobs', payload: data})
-  }
-  
+  }, [state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company])
+
   useEffect( () => {
-    const url = getUrl(state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company);
-    fetchFilteredJobs(url);
-  }, [state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company])
-}
+    fetchFilteredJobs();
+  }, [fetchFilteredJobs, state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
+
+  console.log(state.jobs);
+
+  return(
+    <div>
+      <JobsList 
+      jobs={state.jobs}
+      page={state.page}
+      dispatch={dispatch} />
+    </div>
+  );
+};
