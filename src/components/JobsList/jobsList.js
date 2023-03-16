@@ -7,7 +7,7 @@ export const JobsList = ({ jobs, page, dispatch }) => {
     console.log(page);
 
     const handleChangePage = (e, newPage) => {
-        dispatch({type: 'setPage', payload: page+1000});
+        dispatch({type: 'setPage', payload: page+1});
     }
 
     //Headers for jobType,                     
