@@ -1,7 +1,5 @@
-import React, { useEffect, useReducer, useCallback } from 'react';
-import { JobsList } from './components/JobsList/jobsList';
-
-import './App.css';
+import {useEffect, useState} from 'react';
+import React, { useReducer, useCallback } from 'react';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -23,7 +21,7 @@ function reducer(state, action) {
       return {...state, location2: action.payload };
     case 'setLocation3':
       return {...state, location3: action.payload };
-    case 'setLoaction4':
+    case 'setLocation4':
       return {...state, location4: action.payload };
     case 'setLocation5':
       return {...state, location5: action.payload };
@@ -66,58 +64,52 @@ const getUrl = (page, what, where, distance, location0, location1, location2, lo
       }
     }
   })
-  console.log('url from in geturl ' + searchUrl);
+  console.log('url from in getUrl ' + searchUrl);
   return searchUrl
 };
 
-export const App = () => {
-
-  const initialState = {
-    jobs: {},
-    page: 1,
-    what: '',
-    where: '',
-    distance: -1,
-    location0: '',
-    location1: '',
-    location2: '',
-    location3: '',
-    location4: '',
-    location5: '',
-    location6: '',
-    location7: '',
-    category: '',
-    salary_min: -1,
-    salary_max: -1,
-    full_time: -1,
-    part_time: -1,
-    company: -1,
-  };
-
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const fetchFilteredJobs = useCallback(async () => {
-    const url = getUrl(state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company)
-    console.log('url from in fetch ' + url)
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log('data from fetch:')
-    console.log(data);
-    dispatch({type: 'setJobs', payload: data})
-  }, [state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company])
-
-  useEffect( () => {
-    fetchFilteredJobs();
-  }, [fetchFilteredJobs, state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
-
-  console.log(state.jobs);
-
-  return(
-    <div>
-      <JobsList 
-      jobs={state.jobs}
-      page={state.page}
-      dispatch={dispatch} />
-    </div>
+function App() {
+    const initialState = {
+      jobs: {},
+      page: 1,
+      what: '',
+      where: '',
+      distance: -1,
+      location0: '',
+      location1: '',
+      location2: '',
+      location3: '',
+      location4: '',
+      location5: '',
+      location6: '',
+      location7: '',
+      category: '',
+      salary_min: -1,
+      salary_max: -1,
+      full_time: -1,
+      part_time: -1,
+      company: -1,
+    };
+  
+    const [state, dispatch] = useReducer(reducer, initialState);
+  
+    const fetchFilteredJobs = useCallback(async () => {
+      const url = getUrl(state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company)
+      console.log('url from in fetch ' + url)
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log('data from fetch:')
+      console.log(data);
+      dispatch({type: 'setJobs', payload: data})
+    }, [state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company])
+  
+    useEffect( () => {
+      fetchFilteredJobs();
+    }, [fetchFilteredJobs, state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
+  
+  return (
+    <p>Hi</p>
   );
 };
+
+export default App;
