@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import React, { useReducer, useCallback } from 'react';
 import { DetailedJobView } from './components/DetailedJobView/detailedJobView';
 
 function reducer(state, action) {
   switch (action.type) {
     case 'setSelectedJob':
-      return {...state, selectedJob: null};
+      return {...state, selectedJob: action.payload};
     case 'setJobs':
       return {...state, jobs: action.payload };
     case 'setPage':
@@ -95,6 +95,7 @@ export function App() {
     };
   
     const [state, dispatch] = useReducer(reducer, initialState);
+    const [isLoading, setIsLoading] = useState(true);
   
     const fetchFilteredJobs = useCallback(async () => {
       const url = getUrl(state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company)
@@ -103,14 +104,20 @@ export function App() {
       const data = await response.json();
       console.log('data from fetch:')
       console.log(data);
-      dispatch({type: 'setJobs', payload: data})
+      dispatch({type: 'setJobs', payload: data.results})
+      setIsLoading(false);
     }, [state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
   
     useEffect( () => {
       fetchFilteredJobs();
     }, [fetchFilteredJobs, state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
-  
+    
+    console.log(state.jobs[0])
+    
   return (
-    <DetailedJobView selectedJob={state.jobs[0]} dispatch={dispatch}/>
+    <div id="app">
+     {!isLoading ? <DetailedJobView selectedJob={state.jobs[0]} reducer={reducer}/> : <p>Test</p>}
+     </div>
     );
 };
+
