@@ -1,8 +1,11 @@
-import {useEffect, useState} from 'react';
+import { useEffect } from 'react';
 import React, { useReducer, useCallback } from 'react';
+import { DetailedJobView } from './components/DetailedJobView/detailedJobView';
 
 function reducer(state, action) {
   switch (action.type) {
+    case 'setSelectedJob':
+      return {...state, selectedJob: null};
     case 'setJobs':
       return {...state, jobs: action.payload };
     case 'setPage':
@@ -40,7 +43,7 @@ function reducer(state, action) {
     case 'setPartTime':
       return {...state, part_time: action.payload };
     case 'setCompany':
-      return {...state, company: action.paylaod };
+      return {...state, company: action.payload };
   default:
     throw new Error();
   }
@@ -101,13 +104,13 @@ export function App() {
       console.log('data from fetch:')
       console.log(data);
       dispatch({type: 'setJobs', payload: data})
-    }, [state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company])
+    }, [state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
   
     useEffect( () => {
       fetchFilteredJobs();
     }, [fetchFilteredJobs, state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
   
   return (
-    <p>Hi</p>
+    <DetailedJobView selectedJob = {state.jobs} dispatch={dispatch}/>
   );
 };
