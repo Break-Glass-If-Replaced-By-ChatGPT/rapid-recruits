@@ -111,6 +111,6 @@ export function App() {
     }, [fetchFilteredJobs, state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
   
   return (
-    <DetailedJobView selectedJob = {state.jobs} dispatch={dispatch}/>
-  );
+    <DetailedJobView selectedJob={state.jobs[0]} dispatch={dispatch}/>
+    );
 };

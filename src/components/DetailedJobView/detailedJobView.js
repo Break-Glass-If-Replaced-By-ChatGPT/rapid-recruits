@@ -2,7 +2,7 @@ import { React } from 'react';
 import { Sheet} from '@mui/joy'
 
 
-export function DetailedJobView(selectedJob, reducer) {
+export function DetailedJobView(selectedJob, dispatch) {
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -13,7 +13,7 @@ export function DetailedJobView(selectedJob, reducer) {
     // maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
   });
 
-  console.log(selectedJob)
+  // console.log(selectedJob)
 
   return (
     <Sheet
