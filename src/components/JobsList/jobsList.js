@@ -16,7 +16,7 @@ export const JobsList = ({ jobs, page, dispatch }) => {
         { id: 'Company', minWidth: 80, align: 'center' },
         { id: 'Job Location', minWidth: 80, align: 'center'},
         { id: 'Category', minWidth: 80, align: 'center'},
-        { id: 'Part Time/Full Time', minWidth: 80, align: 'center' },
+        { id: 'Contract Type', minWidth: 80, align: 'center' },
         { id: 'Salary Range', minWidth: 80, align: 'center'},
     ]
 
@@ -64,7 +64,7 @@ export const JobsList = ({ jobs, page, dispatch }) => {
             return 'location.display_name';
         case 'Category':
             return 'category.label';
-        case 'Part Time/Full Time':
+        case 'Contract Type':
             return 'contract_time';
         case 'Salary Range':
             return 'salary_min';

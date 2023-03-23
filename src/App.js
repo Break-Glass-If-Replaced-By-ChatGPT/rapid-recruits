@@ -1,5 +1,6 @@
 
 import { JobsList } from './components/JobsList/jobsList'
+import { HalfJobsList } from './components/JobsList/halfJobsList';
 import React, { useReducer, useCallback, useEffect } from 'react';
 
 function reducer(state, action) {
@@ -107,7 +108,7 @@ export function App() {
   
   return (
     <div>
-      <JobsList 
+      <HalfJobsList 
         jobs={state.jobs}
         page={state.page}
         dispatch={dispatch}
