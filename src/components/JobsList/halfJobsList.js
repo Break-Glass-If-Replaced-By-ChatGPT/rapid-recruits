@@ -3,13 +3,14 @@ import { prettify } from '../../common/utility'
 import { Table, TableBody, TableCell, TableContainer, TablePagination, TableHead, TableRow, TableSortLabel, Typography, Stack } from '@mui/material';
 import {SectionTitle, TablePaper } from '../styles';
 
-export const HalfJobsList = ({ jobs, page, dispatch }) => {
+export const HalfJobsList = ({ state, dispatch }) => {
 
-    console.log(page);
+    console.log(state.page);
 
-    const handleChangePage = () => {
-        dispatch({type: 'setPage', payload: page+1});
+    const handleChangePage = (event, newPage) => {
+      dispatch({type: 'setPage', payload: newPage + 1});
     }
+
 
     //Headers for jobType,                     
     const headers = [
@@ -38,7 +39,7 @@ export const HalfJobsList = ({ jobs, page, dispatch }) => {
     };
 
     /* Orders the data in the columns according to the state value in orderColumn, either asc or desc depending on order */
-    const filteredJobs = jobs?.results?.sort((a, b) => {
+    const filteredJobs = state.jobs?.sort((a, b) => {
         if (!orderColumn) {
             return 0;
         } else {
@@ -73,7 +74,7 @@ export const HalfJobsList = ({ jobs, page, dispatch }) => {
 
     return (
         <div>
-            { jobs?.results?.length ? (
+            { state.jobs?.length ? (
                 <TablePaper elevation={0} variant="outlined">
                     <TableContainer sx={{ maxHeight: 1000 }}>
                         <SectionTitle variant="h5">{'Search Results'}</SectionTitle>
@@ -139,11 +140,11 @@ export const HalfJobsList = ({ jobs, page, dispatch }) => {
                         </Table>
                     </TableContainer>
                     
-                    {!!(jobs?.results?.length) &&
+                    {!!(state.jobs?.length) &&
                         <TablePagination
                         component="div"
-                        count={jobs.count}
-                        page={page-1}
+                        count={state.apiObject.count}
+                        page={state.page-1}
                         rowsPerPage={10}
                         onPageChange={handleChangePage}
                         />

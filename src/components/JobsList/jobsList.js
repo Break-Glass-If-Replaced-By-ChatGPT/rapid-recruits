@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TablePagination, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import {SectionTitle, TablePaper } from '../styles';
 
-export const JobsList = ({ jobs, page, dispatch }) => {
+export const JobsList = ({ state, dispatch }) => {
 
-    console.log(page);
+    console.log(state.page);
+    console.log(state.apiObject);
 
-    const handleChangePage = (e, newPage) => {
-        dispatch({type: 'setPage', payload: page+1});
-    }
+    const handleChangePage = (event, newPage) => {
+        dispatch({type: 'setPage', payload: newPage + 1});
+      }
 
     //Headers for jobType,                     
     const headers = [
@@ -37,7 +38,7 @@ export const JobsList = ({ jobs, page, dispatch }) => {
     };
 
     /* Orders the data in the columns according to the state value in orderColumn, either asc or desc depending on order */
-    const filteredJobs = jobs?.results?.sort((a, b) => {
+    const filteredJobs = state.jobs?.sort((a, b) => {
         if (!orderColumn) {
             return 0;
         } else {
@@ -73,7 +74,7 @@ export const JobsList = ({ jobs, page, dispatch }) => {
 
     return (
         <div>
-            { jobs?.results?.length ? (
+            { state.jobs?.length ? (
                 <TablePaper elevation={0} variant="outlined">
                     <TableContainer sx={{ maxHeight: 1000 }}>
                         <SectionTitle variant="h5">{'Search Results'}</SectionTitle>
@@ -81,7 +82,7 @@ export const JobsList = ({ jobs, page, dispatch }) => {
                         <TableHead>
                             <TableRow >
                                 {headers.map((column) => (
-                                    !!(jobs?.results?.length) &&
+                                    !!(state.jobs?.length) &&
                                     <TableCell key={column.id}>
                                         <TableSortLabel active={currentColumn === column.id} direction={order} onClick={() => handleSort(column.id, colName(column.id))}>
                                             {column.id}
@@ -112,11 +113,11 @@ export const JobsList = ({ jobs, page, dispatch }) => {
                         </Table>
                     </TableContainer>
                     
-                    {!!(jobs?.results?.length) &&
+                    {!!(state.apiObject?.results?.length) &&
                         <TablePagination
                         component="div"
-                        count={jobs.count}
-                        page={page-1}
+                        count={state.apiObject.count}
+                        page={state.page-1}
                         rowsPerPage={10}
                         onPageChange={handleChangePage}
                         />
