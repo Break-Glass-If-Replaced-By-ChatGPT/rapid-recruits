@@ -1,8 +1,8 @@
 import { React } from 'react';
 import { Sheet, Button, Box } from '@mui/joy'
 
-
-export function DetailedJobView({selectedJob, dispatch}) {
+//  Going to add selectedJob as a context in parent page later. Only leaving in for now to have a working component.
+export function DetailedJobView({selectedJob}) {
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -40,8 +40,6 @@ export function DetailedJobView({selectedJob, dispatch}) {
           <h1> Title: {selectedJob.title} </h1> 
           <h1> Job Type: {selectedJob.category.label} </h1>
           <h1> Company: {selectedJob.company.display_name} </h1>
-        </Box>
-        <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', flexDirection: 'column' }}>
           <h2> Location: {selectedJob.location.display_name}</h2>
           {selectedJob.salary_is_predicted === '1' ? <h2>Salary: {formatter.format(selectedJob.salary_min)}</h2> : <h2>Salary: ---</h2> }
           <h2> Description: {selectedJob.description} </h2>
