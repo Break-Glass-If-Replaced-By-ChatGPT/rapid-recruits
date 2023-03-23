@@ -1,5 +1,5 @@
 import { React } from 'react';
-import { Sheet, Button, Box, Typography } from '@mui/joy'
+import { Sheet, Button, Box, Typography } from '@mui/joy';
 
 //  Going to add selectedJob as a context in parent page later. Only leaving in for now to have a working component.
 export function DetailedJobView({selectedJob}) {
@@ -12,11 +12,11 @@ export function DetailedJobView({selectedJob}) {
     // minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
      maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
   });
-
+  
   // console.log("Job:",selectedJob)
 
   return (
-    <Sheet   
+    <Sheet
     sx={{
       mx: '10px', // margin left & right
       my: 4, // margin top & bottom
