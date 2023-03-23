@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import React, { useReducer, useCallback } from 'react';
-import { DetailedJobView } from './components/DetailedJobView/detailedJobView';
 import { ResumeForm } from './components/ResumeForm';
 
 function reducer(state, action) {
@@ -122,5 +121,3 @@ export function App() {
     );
     
 };
-
-
