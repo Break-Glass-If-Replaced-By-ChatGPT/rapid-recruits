@@ -37,7 +37,7 @@ export function DetailedJobView({selectedJob}) {
           <Typography variant="h2"> Company: {selectedJob.company.display_name} </Typography>
           <Typography variant="h2"> Location: {selectedJob.location.display_name}</Typography>
           {selectedJob.salary_is_predicted === '1' ? <Typography variant="h2">Salary: {formatter.format(selectedJob.salary_min)}</Typography> : <Typography variant="h2">Salary: ---</Typography> }
-          <Typography variant="h5"> Description: {selectedJob.description} </Typography>
+          <Typography variant="body1"> Description: {selectedJob.description} </Typography>
         </Box>
         <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap', flexDirection: 'column' }} className='applyButton'>
           <Button color="primary" disabled={false} onClick={function(){}} size="md" variant="soft"> Apply </Button>
