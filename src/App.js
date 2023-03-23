@@ -1,10 +1,15 @@
 
+import React, { useReducer, useCallback, useEffect } from 'react';
 import { JobsList } from './components/JobsList/jobsList'
 import { HalfJobsList } from './components/JobsList/halfJobsList';
-import React, { useReducer, useCallback, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { DetailedJobView } from './components/DetailedJobView/detailedJobView';
+import { ResumeForm } from './components/ResumeForm';
 
 function reducer(state, action) {
   switch (action.type) {
+    case 'setSelectedJob':
+      return {...state, selectedJob: action.payload};
     case 'setJobs':
       return {...state, jobs: action.payload };
     case 'setPage':
@@ -94,26 +99,25 @@ export function App() {
     };
   
     const [state, dispatch] = useReducer(reducer, initialState);
+    const [isLoading, setIsLoading] = useState(true);
   
     const fetchFilteredJobs = useCallback(async () => {
       const url = getUrl(state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company)
       const response = await fetch(url);
       const data = await response.json();
       dispatch({type: 'setJobs', payload: data})
-    }, [state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company])
+      setIsLoading(false);
+    }, [state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
   
     useEffect( () => {
       fetchFilteredJobs();
     }, [fetchFilteredJobs, state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
-  
+    
+    console.log(state.jobs[0])
+    
   return (
-    <div>
-      <HalfJobsList 
-        jobs={state.jobs}
-        page={state.page}
-        dispatch={dispatch}
-      />
-    </div>
-  );
+    <div id="app">
+     {!isLoading ? <ResumeForm/> : <p>Test</p>}
+     </div>
+    );   
 };
-
