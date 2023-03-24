@@ -3,6 +3,8 @@ import React, { useReducer, useCallback } from 'react';
 
 function reducer(state, action) {
   switch (action.type) {
+    case 'setApiObject':
+      return {...state, apiObject: action.payload };
     case 'setJobs':
       return {...state, jobs: action.payload };
     case 'setPage':
@@ -98,11 +100,11 @@ export function App() {
       const url = getUrl(state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company)
       const response = await fetch(url);
       const data = await response.json();
-      console.log('data from fetch:')
-      console.log(data);
-      dispatch({type: 'setJobs', payload: data})
-    }, [state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company])
-  
+      dispatch({type: 'setApiObject', payload: data})
+      dispatch({type: 'setJobs', payload: data.results})
+      setIsLoading(false);
+    }, [state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
+    
     useEffect( () => {
       fetchFilteredJobs();
     }, [fetchFilteredJobs, state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
