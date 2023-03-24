@@ -1,13 +1,8 @@
-import React, { useReducer, useCallback, useEffect, useState } from 'react';
-import { JobsList } from './components/JobsList/jobsList'
-import { HalfJobsList } from './components/JobsList/halfJobsList';
-import { DetailedJobView } from './components/DetailedJobView/detailedJobView';
-import { ResumeForm } from './components/ResumeForm';
+import {useEffect, useState} from 'react';
+import React, { useReducer, useCallback } from 'react';
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'setSelectedJob':
-      return {...state, selectedJob: action.payload};
     case 'setApiObject':
       return {...state, apiObject: action.payload };
     case 'setJobs':
@@ -109,7 +104,7 @@ export function App() {
       dispatch({type: 'setJobs', payload: data.results})
       setIsLoading(false);
     }, [state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
-  
+    
     useEffect( () => {
       fetchFilteredJobs();
     }, [fetchFilteredJobs, state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
@@ -117,11 +112,8 @@ export function App() {
     console.log(state.jobs[0])
     
   return (
-    <div id="app">
-     {!isLoading ? <HalfJobsList 
-      state={state}
-      dispatch={dispatch}
-     /> : null}
-     </div>
-    );   
+    <p>Hi</p>
+  );
 };
+
+export default App;
