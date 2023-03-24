@@ -1,8 +1,7 @@
 
-import React, { useReducer, useCallback, useEffect } from 'react';
+import React, { useReducer, useCallback, useEffect, useState } from 'react';
 import { JobsList } from './components/JobsList/jobsList'
 import { HalfJobsList } from './components/JobsList/halfJobsList';
-import { useEffect, useState } from 'react';
 import { DetailedJobView } from './components/DetailedJobView/detailedJobView';
 import { ResumeForm } from './components/ResumeForm';
 
@@ -120,7 +119,10 @@ export function App() {
     
   return (
     <div id="app">
-     {!isLoading ? <ResumeForm/> : <p>Test</p>}
+     {!isLoading ? <HalfJobsList 
+      state={state}
+      dispatch={dispatch}
+     /> : null}
      </div>
     );   
 };
