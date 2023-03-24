@@ -1,5 +1,9 @@
 import {useEffect, useState} from 'react';
 import React, { useReducer, useCallback } from 'react';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Homepage from './Pages/Homepage';
+import Resultspage from './Pages/Resultspage';
+import Resumepage from './Pages/Resumepage';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -111,9 +115,19 @@ export function App() {
     
     console.log(state.jobs[0])
     
-  return (
-    <p>Hi</p>
-  );
+  return ( 
+  <div id="app">
+    {!isLoading ? 
+      <BrowserRouter>
+        <Routes>
+            <Route path= '/' element= {<Homepage/>}/>
+            <Route path= '/results' element= {<Resultspage/>}/>
+            <Route path= '/apply' element= {<Resumepage/>}/>
+        </Routes>
+      </BrowserRouter>
+      : 
+      null}
+  </div>)
 };
 
 export default App;
