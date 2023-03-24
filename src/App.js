@@ -1,4 +1,3 @@
-
 import React, { useReducer, useCallback, useEffect, useState } from 'react';
 import { JobsList } from './components/JobsList/jobsList'
 import { HalfJobsList } from './components/JobsList/halfJobsList';
