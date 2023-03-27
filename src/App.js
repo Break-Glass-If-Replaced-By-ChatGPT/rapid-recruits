@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import React, { useReducer, useCallback } from 'react';
 import { DetailedJobView } from './components/DetailedJobView/detailedJobView';
+import { DetailedViewPage } from './Pages/DetailedViewPage';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -8,6 +9,8 @@ function reducer(state, action) {
       return {...state, apiObject: action.payload };
     case 'setJobs':
       return {...state, jobs: action.payload };
+    case 'setSelectedJob':
+      return {...state, selectedJob: action.payload};
     case 'setPage':
       return {...state, page: action.payload };
     case 'setWhat':
@@ -115,7 +118,7 @@ export function App() {
   return (
     <div>
       {!isLoading &&
-        <DetailedJobView state={state} dispatch={dispatch} />
+        <DetailedViewPage state={state} dispatch={dispatch} />
       }
     </div>
   );

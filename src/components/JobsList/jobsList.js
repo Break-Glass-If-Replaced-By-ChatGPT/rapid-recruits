@@ -136,8 +136,9 @@ export const JobsList = ({ state, dispatch }) => {
                                     .map((row, index) => (
                                     <TableRow
                                         key={index}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0, verticalAlign: 'top' } }}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0, verticalAlign: 'top' }, cursor: 'pointer', '&:hover': {backgroundColor: 'rgba(0, 0, 0, 0.04)', }}}
                                         ref={index === 0 ? rowRef : null}
+                                        onClick={() => dispatch({ type: 'setSelectedJob', payload: row })}
                                     >
                                         <TableCell scope="row" sx={{ verticalAlign: 'top' }}>{prettify(row.title)}</TableCell>
                                         <TableCell sx={{ verticalAlign: 'top' }}>{prettify(row.company.display_name)}</TableCell>
