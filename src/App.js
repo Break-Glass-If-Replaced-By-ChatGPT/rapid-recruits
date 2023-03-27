@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import React, { useReducer, useCallback } from 'react';
+import { DetailedJobView } from './components/DetailedJobView/detailedJobView';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -112,7 +113,11 @@ export function App() {
     console.log(state.jobs[0])
     
   return (
-    <p>Hi</p>
+    <div>
+      {!isLoading &&
+        <DetailedJobView state={state} dispatch={dispatch} />
+      }
+    </div>
   );
 };
 
