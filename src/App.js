@@ -123,7 +123,7 @@ export function App() {
   return ( 
   <div id="app">
     {!isLoading ? 
-      <StateContext.Provider value={{state,dispatch}}>
+      <StateContext.Provider value={{state,dispatch, fetchFilteredJobs}}>
         <BrowserRouter>
           <Routes>
               <Route path= '/' element= {<Homepage/>}/>
