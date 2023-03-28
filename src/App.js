@@ -11,6 +11,8 @@ function reducer(state, action) {
       return {...state, apiObject: action.payload };
     case 'setJobs':
       return {...state, jobs: action.payload };
+    case 'setSelectedJob':
+      return {...state, selectedJob: action.payload};
     case 'setPage':
       return {...state, page: action.payload };
     case 'setWhat':
