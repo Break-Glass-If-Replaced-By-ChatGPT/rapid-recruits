@@ -1,7 +1,9 @@
 import {useEffect, useState} from 'react';
-import React, { useReducer, useCallback } from 'react';
-import { DetailedJobView } from './components/DetailedJobView/detailedJobView';
-import { DetailedViewPage } from './Pages/DetailedViewPage';
+import React, { useReducer, useCallback, createContext } from 'react';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Homepage from './Pages/Homepage';
+import Resultspage from './Pages/Resultspage';
+import Resumepage from './Pages/Resumepage';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -73,7 +75,10 @@ const getUrl = (page, what, where, distance, location0, location1, location2, lo
   return searchUrl
 };
 
+export const StateContext = createContext();
+
 export function App() {
+
     const initialState = {
       apiObject: {},
       jobs: [],
@@ -113,15 +118,23 @@ export function App() {
       fetchFilteredJobs();
     }, [fetchFilteredJobs, state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
     
-    console.log(state.jobs[0])
+    console.log(state.jobs)
     
-  return (
-    <div>
-      {!isLoading &&
-        <DetailedViewPage state={state} dispatch={dispatch} />
-      }
-    </div>
-  );
+  return ( 
+  <div id="app">
+    {!isLoading ? 
+      <StateContext.Provider value={{state,dispatch}}>
+        <BrowserRouter>
+          <Routes>
+              <Route path= '/' element= {<Homepage/>}/>
+              <Route path= '/results' element= {<Resultspage/>}/>
+              <Route path= '/apply' element= {<Resumepage/>}/>
+          </Routes>
+        </BrowserRouter>
+      </StateContext.Provider>
+      : 
+      null}
+  </div>)
 };
 
 export default App;
