@@ -1,9 +1,12 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect, useContext } from 'react';
 import { prettify, useWindowSize } from '../../common/utility'
 import { Table, TableBody, TableCell, TableContainer, TablePagination, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import {SectionTitle, TablePaper } from '../styles';
+import { StateContext } from '../../App';
 
-export const JobsList = ({ state, dispatch }) => {
+export const JobsList = () => {
+    const {state, dispatch} = useContext(StateContext);
+
 
     const headerRef = useRef(null);
     const rowRef = useRef(null);
