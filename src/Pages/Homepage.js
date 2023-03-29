@@ -4,22 +4,22 @@ import { Sheet } from '@mui/joy';
 import { FilterForm } from "../components/FilterForm/FilterForm";
 import { SearchBarView } from "../components/SearchBar/SearchBar";
 import { StateContext } from "../App";
+import { BasicNav } from '../components/NavBars/BasicNav'
 
 export default function Homepage() {
     const {state,dispatch} = useContext(StateContext);
     
     return (
         <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', flexDirection: 'column',}}>
-            <Box sx={{ height:'10vh',display: 'flex', gap: 2, flexWrap: 'wrap', flexDirection: 'column', textAlign: 'Center'}}>
+            <Box sx={{ height:'8vh',display: 'flex', gap: 2, flexWrap: 'wrap', flexDirection: 'column', textAlign: 'Center'}}>
                 <BasicNav />
             </Box>
             <Sheet
             sx={{
-                mx: '10px', // margin left & right
-                my: 4, // margin top & bottom
+                mx: '8px', // margin left & right
                 py: 3, // padding top & bottom
                 px: 2, // padçding left & right
-                height:'75vh',
+                height:'80vh',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 0,
