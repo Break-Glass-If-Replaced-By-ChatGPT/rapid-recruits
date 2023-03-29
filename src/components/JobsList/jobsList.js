@@ -145,7 +145,7 @@ export const JobsList = ({ state, dispatch }) => {
                                         <TableCell sx={{ verticalAlign: 'top' }}>{`${prettify(row.location.display_name)}, ${prettify(row.location.area[0])}`}</TableCell>
                                         <TableCell sx={{ verticalAlign: 'top' }}>{prettify(row.category.label)}</TableCell>
                                         <TableCell sx={{ verticalAlign: 'top' }}>{prettify(row.contract_time)}</TableCell>
-                                        <TableCell sx={{ verticalAlign: 'top' }}>{`$${row.salary_min}-$${row.salary_max}`}</TableCell>
+                                        <TableCell sx={{ verticalAlign: 'top' }}>{`$${row.salary_min} - $${row.salary_max}`}</TableCell>
                                     </TableRow>
                                     ))
                                 }
