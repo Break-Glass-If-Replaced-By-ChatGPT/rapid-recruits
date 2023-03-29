@@ -1,5 +1,5 @@
 import React from "react";
-import {Box, Typography} from '@mui/material';
+import { Box } from '@mui/material';
 import { SearchNav } from '../components/NavBars/SearchNav';
 import { JobsList } from '../components/JobsList/jobsList';
 
