@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import React, { useReducer, useCallback, createContext } from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Homepage from './Pages/Homepage';
 import Resultspage from './Pages/Resultspage';
 import Resumepage from './Pages/Resumepage';
