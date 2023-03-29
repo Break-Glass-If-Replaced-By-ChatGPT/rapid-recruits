@@ -51,6 +51,7 @@ export function DetailedJobView() {
             </Box>
             <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap', flexDirection: 'column' }} className='applyButton'>
               <Button color="primary" disabled={false} onClick={() => navigate('/')} size="md" variant="soft"> Apply </Button>
+              <Button color="primary" disabled={false} onClick={() => dispatch({type: 'setSelectedJob', payload: null})} size="md" variant="soft"> Back </Button>
             </Box>
           </div>
         </Sheet> 
