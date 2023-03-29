@@ -1,8 +1,13 @@
+import React, { useContext } from 'react';
 import { DetailedJobView } from '../components/DetailedJobView/detailedJobView';
 import { HalfJobsList } from '../components/JobsList/halfJobsList';
 import { Box, Container } from '@mui/material';
+import { StateContext } from '../App';
 
-export const DetailedViewPage = ({ state, dispatch }) => {
+export const DetailedViewPage = () => {
+
+  const {state, dispatch} = useContext(StateContext);
+
   return (
     <Container
       disableGutters

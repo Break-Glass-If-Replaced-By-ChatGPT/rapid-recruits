@@ -1,10 +1,13 @@
-import React from "react";
-import {Box} from '@mui/material';
-import {Sheet} from '@mui/joy';
+import React, { useContext } from "react";
+import { Box } from '@mui/material';
+import { Sheet } from '@mui/joy';
 import { FilterForm } from "../components/FilterForm/FilterForm";
-import { BasicNav } from  '../components/NavBars/BasicNav';
-export default function Homepage() {
+import { SearchBarView } from "../components/SearchBar/SearchBar";
+import { StateContext } from "../App";
 
+export default function Homepage() {
+    const {state,dispatch} = useContext(StateContext);
+    
     return (
         <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', flexDirection: 'column',}}>
             <Box sx={{ height:'10vh',display: 'flex', gap: 2, flexWrap: 'wrap', flexDirection: 'column', textAlign: 'Center'}}>
@@ -27,7 +30,7 @@ export default function Homepage() {
               >
                 <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', flexDirection: 'Column'}} justifyContent='center' alignContent='middle'
               alignItems='center'>
-                        <h1>Search Input</h1>
+                        <SearchBarView dispatch={dispatch}></SearchBarView>
                         <FilterForm></FilterForm>
                 </Box>
             </Sheet>
