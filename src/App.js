@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import React, { useReducer, useCallback, createContext } from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Homepage from './Pages/Homepage';
 import Resultspage from './Pages/Resultspage';
 import Resumepage from './Pages/Resumepage';
@@ -82,6 +82,7 @@ export function App() {
     const initialState = {
       apiObject: {},
       jobs: [],
+      selectedJob: null,
       page: 1,
       what: '',
       where: '',
@@ -127,7 +128,7 @@ export function App() {
         <BrowserRouter>
           <Routes>
               <Route path= '/' element= {<Homepage/>}/>
-              <Route path= '/results' element= {<Resultspage/>}/>
+              <Route path= '/results' element= {<Resultspage state={state} dispatch={dispatch} />}/>
               <Route path= '/apply' element= {<Resumepage/>}/>
           </Routes>
         </BrowserRouter>

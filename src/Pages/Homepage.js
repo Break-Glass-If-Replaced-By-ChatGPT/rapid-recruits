@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import {Box, Typography} from '@mui/material';
-import {Sheet} from '@mui/joy';
+import { Box } from '@mui/material';
+import { Sheet } from '@mui/joy';
 import { FilterForm } from "../components/FilterForm/FilterForm";
 import { SearchBarView } from "../components/SearchBar/SearchBar";
 import { StateContext } from "../App";
@@ -11,14 +11,14 @@ export default function Homepage() {
     return (
         <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', flexDirection: 'column',}}>
             <Box sx={{ height:'10vh',display: 'flex', gap: 2, flexWrap: 'wrap', flexDirection: 'column', textAlign: 'Center'}}>
-                <Typography variant="h1">Home</Typography>
+                <BasicNav />
             </Box>
             <Sheet
             sx={{
                 mx: '10px', // margin left & right
                 my: 4, // margin top & bottom
                 py: 3, // padding top & bottom
-                px: 2, // padding left & right
+                px: 2, // padçding left & right
                 height:'75vh',
                 display: 'flex',
                 flexDirection: 'column',

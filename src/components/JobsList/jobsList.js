@@ -1,9 +1,12 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect, useContext } from 'react';
 import { prettify, useWindowSize } from '../../common/utility'
 import { Table, TableBody, TableCell, TableContainer, TablePagination, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import {SectionTitle, TablePaper } from '../styles';
+import { StateContext } from '../../App';
 
-export const JobsList = ({ state, dispatch }) => {
+export const JobsList = () => {
+    const {state, dispatch} = useContext(StateContext);
+
 
     const headerRef = useRef(null);
     const rowRef = useRef(null);
@@ -145,7 +148,7 @@ export const JobsList = ({ state, dispatch }) => {
                                         <TableCell sx={{ verticalAlign: 'top' }}>{`${prettify(row.location.display_name)}, ${prettify(row.location.area[0])}`}</TableCell>
                                         <TableCell sx={{ verticalAlign: 'top' }}>{prettify(row.category.label)}</TableCell>
                                         <TableCell sx={{ verticalAlign: 'top' }}>{prettify(row.contract_time)}</TableCell>
-                                        <TableCell sx={{ verticalAlign: 'top' }}>{`$${row.salary_min}-$${row.salary_max}`}</TableCell>
+                                        <TableCell sx={{ verticalAlign: 'top' }}>{`$${row.salary_min} - $${row.salary_max}`}</TableCell>
                                     </TableRow>
                                     ))
                                 }

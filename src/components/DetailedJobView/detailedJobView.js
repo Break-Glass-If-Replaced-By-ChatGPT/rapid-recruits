@@ -1,9 +1,16 @@
-import { React } from 'react';
+import { React, useContext} from 'react';
+import { useNavigate } from 'react-router-dom'
 import { Sheet, Button, Box, Typography } from '@mui/joy';
+import { StateContext } from '../../App';
 
 //  Going to add selectedJob as a context in parent page later. Only leaving in for now to have a working component.
-export function DetailedJobView({selectedJob}) {
+export function DetailedJobView() {
+  const {state, dispatch} = useContext(StateContext);
 
+  const selectedJob = state.selectedJob;
+
+  const navigate = useNavigate();
+ 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -43,7 +50,7 @@ export function DetailedJobView({selectedJob}) {
               <Typography variant="body1"> Description: {selectedJob.description} </Typography>
             </Box>
             <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap', flexDirection: 'column' }} className='applyButton'>
-              <Button color="primary" disabled={false} onClick={function(){}} size="md" variant="soft"> Apply </Button>
+              <Button color="primary" disabled={false} onClick={() => navigate('/')} size="md" variant="soft"> Apply </Button>
             </Box>
           </div>
         </Sheet> 
