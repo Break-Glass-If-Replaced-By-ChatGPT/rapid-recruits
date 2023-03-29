@@ -170,7 +170,7 @@ export const HalfJobsList = ({ state, dispatch }) => {
                                         <Typography>{prettify(row.contract_time)}</Typography>
                                       </Stack>
                                     </TableCell>
-                                    <TableCell sx={{ verticalAlign: 'top' }}>{`$${row.salary_min}-$${row.salary_max}`}</TableCell>
+                                    <TableCell sx={{ verticalAlign: 'top' }}>{`$${row.salary_min} - $${row.salary_max}`}</TableCell>
                                   </TableRow>
                                   ))
                               }

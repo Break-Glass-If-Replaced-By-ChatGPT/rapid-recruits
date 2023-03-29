@@ -127,7 +127,7 @@ export function App() {
         <BrowserRouter>
           <Routes>
               <Route path= '/' element= {<Homepage/>}/>
-              <Route path= '/results' element= {<Resultspage/>}/>
+              <Route path= '/results' element= {<Resultspage state={state} dispatch={dispatch} />}/>
               <Route path= '/apply' element= {<Resumepage/>}/>
           </Routes>
         </BrowserRouter>
