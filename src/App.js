@@ -82,6 +82,7 @@ export function App() {
     const initialState = {
       apiObject: {},
       jobs: [],
+      selectedJob: null,
       page: 1,
       what: '',
       where: '',
