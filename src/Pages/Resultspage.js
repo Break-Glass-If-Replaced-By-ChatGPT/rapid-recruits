@@ -6,7 +6,7 @@ import { StateContext } from "../App";
 import { DetailedViewPage } from "./DetailedViewPage";
 
 export default function Resultspage() {
-    const {state, dispatch} = useContext(StateContext);
+    const {state} = useContext(StateContext);
 
     return (
         <Box>
