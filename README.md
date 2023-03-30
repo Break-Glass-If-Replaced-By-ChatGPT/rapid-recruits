@@ -8,7 +8,6 @@ Rapid Recruit is a job board where job seekers can search and apply for amazing 
 - Material UI
 - Node.js
 - Express
-- MongoDB
 
 ## Installation 💻
 
