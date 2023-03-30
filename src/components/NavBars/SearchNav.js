@@ -1,7 +1,11 @@
 import * as React from 'react';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { StateContext } from '../../App';
 import { styled, alpha } from '@mui/material/styles';
 import { AppBar, Avatar, Box, Container, Toolbar, Tooltip, IconButton, Typography, InputBase, Menu, MenuItem } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { FilterForm } from '../FilterForm/FilterForm'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -48,6 +52,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const SearchNav = () => {
+  const navigate = useNavigate();
+  const { dispatch } = useContext(StateContext);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch({ type: 'setWhat', payload: e.target.value });
+    navigate('/results');
+  };
+
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -103,15 +116,23 @@ export const SearchNav = () => {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ flexGrow: 0, display: 'flex', flexDirection: 'row' }}>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-              />
-            </Search>
+            <FilterForm />
+            <form onSubmit={handleSearch}>
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ 'aria-label': 'search' }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleSearch(e);
+                    }
+                  }}
+                />
+              </Search>
+            </form>
             <Box sx={{ marginLeft: 8 }} >
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
