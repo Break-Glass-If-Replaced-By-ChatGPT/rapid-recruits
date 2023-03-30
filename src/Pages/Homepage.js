@@ -7,7 +7,7 @@ import { StateContext } from "../App";
 import { BasicNav } from '../components/NavBars/BasicNav'
 
 export default function Homepage() {
-    const {state,dispatch} = useContext(StateContext);
+    const { dispatch } = useContext(StateContext);
     
     return (
         <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', flexDirection: 'column',}}>

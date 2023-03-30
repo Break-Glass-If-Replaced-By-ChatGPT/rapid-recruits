@@ -49,6 +49,8 @@ function reducer(state, action) {
       return {...state, part_time: action.payload };
     case 'setCompany':
       return {...state, company: action.payload };
+    case 'setRecentlySubmitted':
+      return {...state, recentlySubmitted: action.payload}
   default:
     throw new Error();
   }
@@ -101,6 +103,7 @@ export function App() {
       full_time: -1,
       part_time: -1,
       company: -1,
+      recentlySubmitted: false
     };
   
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -119,7 +122,6 @@ export function App() {
       fetchFilteredJobs();
     }, [fetchFilteredJobs, state.page, state.what, state.where, state.distance, state.location0, state.location1, state.location2, state.location3, state.location4, state.location5, state.location6, state.location7, state.category, state.salary_min, state.salary_max, state.full_time, state.part_time, state.company]);
     
-    console.log(state.jobs)
     
   return ( 
   <div id="app">
