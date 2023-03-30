@@ -1,19 +1,14 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
 import { TextField, Button, Typography } from '@material-ui/core';
-import { StateContext } from "../../App";
 
 export function ResumeForm() {
-
-  const navigate = useNavigate();
-  const { dispatch } = useContext(StateContext);
-
   const [name, setName] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [resume, setResume] = useState(null);
-  const [coverLetter, setCoverLetter] = useState(null);
+  const [coverLetter, setCoverLetter] = useState(null);;
+  const [submitted, setSubmitted] = useState(false);
 
   const handleResumeChange = (event) => {
     const file = event.target.files[0];
@@ -35,8 +30,6 @@ export function ResumeForm() {
     formData.append('phoneNumber', phoneNumber);
     formData.append('resume', resume);
     formData.append('coverLetter', coverLetter);
-    navigate('/results')
-    dispatch({type: 'setRecentlySubmitted', payload: true});
     ;
 
     // Submit form data
@@ -47,6 +40,7 @@ export function ResumeForm() {
       .then((response) => {
         // Handle response
         console.log('Success:', response);
+        setSubmitted(true);
       })
       .catch((error) => {
         // Handle error
@@ -54,10 +48,14 @@ export function ResumeForm() {
       });
   };
 
+  if (submitted) {
+    return <Typography variant="h6">Thank you for your submission!</Typography>;
+  }
+
   return (
     <div style={{ display: 'flex' }}>
       <form onSubmit={handleSubmit}>
-        <Typography variant="h3" align='center'>Submit Your Resume</Typography>
+        <Typography variant="h6">Submit Your Resume</Typography>
         <TextField
           label="Name"
           variant="outlined"
@@ -68,7 +66,7 @@ export function ResumeForm() {
           onChange={(event) => setName(event.target.value)}
         />
         <TextField
-          type="date"
+          label="Date of Birth"
           variant="outlined"
           margin="normal"
           required
@@ -78,7 +76,6 @@ export function ResumeForm() {
         />
         <TextField
           label="Email"
-          type="email"
           variant="outlined"
           margin="normal"
           required
@@ -88,7 +85,6 @@ export function ResumeForm() {
         />
         <TextField
           label="Phone Number"
-          type="tel"
           variant="outlined"
           margin="normal"
           required
@@ -97,7 +93,6 @@ export function ResumeForm() {
           onChange={(event) => setPhoneNumber(event.target.value)}
         />
         <TextField
-          InputProps={{ disableUnderline: true }}
           type="file"
           label="Resume"
           margin="normal"
@@ -105,7 +100,6 @@ export function ResumeForm() {
           onChange={handleResumeChange}
         />
         <TextField
-          InputProps={{ disableUnderline: true }}
           type="file"
           label="Cover Letter"
           margin="normal"
