@@ -9,7 +9,6 @@ export default function Resumepage(params) {
         <div>
         <BasicNav></BasicNav>
         <Sheet
-        
         sx={{
             mx: '10px', // margin left & right
             my: 4, // margin top & bottom
