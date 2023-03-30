@@ -1,13 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { DetailedJobView } from '../components/DetailedJobView/detailedJobView';
 import { HalfJobsList } from '../components/JobsList/halfJobsList';
-import { Box, Container, Alert, IconButton, Collapse } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { Box, Container } from '@mui/material';
 import { StateContext } from '../App';
 
 export const DetailedViewPage = () => {
-  const { state, dispatch } = useContext(StateContext);
-  const [open, setOpen] = useState(true);
+  const { state } = useContext(StateContext);
 
   return (
     
@@ -26,28 +24,6 @@ export const DetailedViewPage = () => {
         <HalfJobsList />
       </Box>
       <Box sx={{ flex: '1', height: '100%', overflow: 'auto' }}>
-          { state.recentlySubmitted ? (
-            <Collapse in={open}>
-              <Alert
-                action={
-                  <IconButton
-                    aria-label="close"
-                    color="inherit"
-                    size="small"
-                    onClick={() => {
-                      setOpen(false);
-                      dispatch({type: 'setRecentlySubmitted', payload: false})
-                    }}
-                  >
-                    <CloseIcon fontSize="inherit" />
-                  </IconButton>
-                }
-                sx={{ mb: 2 }}
-              >
-                Success! Thanks for Submitting your Application!
-              </Alert>
-            </Collapse>
-          ) : null }
           <DetailedJobView selectedJob={state.selectedJob} />
       </Box>
     </Container>
