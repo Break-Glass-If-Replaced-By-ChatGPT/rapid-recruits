@@ -1,13 +1,13 @@
 import React from "react";
-import {Box, Typography} from '@mui/material';
+import { Box } from '@mui/material';
 import { ResumeForm } from '../components/ResumeForm/ResumeForm';
 import { Sheet } from '@mui/joy';
-import { BasicNav } from "../components/NavBars/BasicNav";
+import { SearchNav } from "../components/NavBars/SearchNav";
 
 export default function Resumepage(params) {
     return (
         <div>
-        <BasicNav></BasicNav>
+        <SearchNav/>
         <Sheet
         sx={{
             mx: '10px', // margin left & right
@@ -23,9 +23,7 @@ export default function Resumepage(params) {
           variant="outlined"
         >
             <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', flexDirection: 'column',alignItems:'center' }}>
-                
-                <ResumeForm></ResumeForm>
-                
+                <ResumeForm></ResumeForm>  
             </Box>
         </Sheet>
         </div>
