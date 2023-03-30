@@ -38,6 +38,7 @@ export function FilterForm(){
         dispatch({type: 'setSalaryMin', payload: updated.minSalary});
         dispatch({type: 'setSalaryMax', payload: updated.maxSalary});
         updated=resetValues;
+        setIsDrawerOpen(false);
     };
 
     const handleReset = () => {
@@ -46,6 +47,8 @@ export function FilterForm(){
         dispatch({ type: "setCategory", payload: resetValues.category });
         dispatch({ type: "setSalaryMin", payload: resetValues.minSalary });
         dispatch({ type: "setSalaryMax", payload: resetValues.maxSalary });
+        updated=resetValues;
+        setIsDrawerOpen(false);
     };
  
    return (
@@ -60,9 +63,8 @@ export function FilterForm(){
                        <TextField sx={{ marginTop: 1, marginBottom: 1 }} p={2} id="Category_input" label="Job Category" variant="outlined" onChange={(e)=>handleChange('category', e)}/>
                        <TextField sx={{ marginTop: 1, marginBottom: 1 }} p={2} id="SalaryMin_input" label="Min Salary" variant="outlined" onChange={(e)=>handleChange('minSalary', e)}/>
                        <TextField sx={{ marginTop: 1, marginBottom: 1 }} p={2} id="SalaryMax_input" label="Max Salary" variant="outlined" onChange={(e)=>handleChange('maxSalary', e)}/>
-                            <Button
-                                sx={{ marginTop: 1, marginBottom: 1 }} color="primary" disabled={false} type="submit" size="md" variant="soft">Apply Filters</Button>
-                            <Button color="secondary" disabled={false} onClick={handleReset} size="md" variant="soft">Reset Filters</Button>
+                        <Button sx={{ marginTop: 1, marginBottom: 1 }} color="primary" disabled={false} type="submit" size="md" variant="soft">Apply Filters</Button>
+                        <Button color="secondary" disabled={false} onClick={handleReset} size="md" variant="soft">Reset Filters</Button>
                     </Box>
                </form>
            </Drawer>
