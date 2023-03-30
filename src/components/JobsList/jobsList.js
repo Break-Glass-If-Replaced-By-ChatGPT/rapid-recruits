@@ -24,19 +24,20 @@ export const JobsList = () => {
 
     //CrashTable sorting state
     const [currentColumn, setCurrentColumn] = useState('');
-    const [orderColumn, setOrderColumn] = useState('');
+    const [orderColumn, setOrderColumn] = useState([]);
     const [order, setOrder] = useState('desc');
 
     /* Sets state for orderColumn & order */
     const handleSort = (columnId, sortValue) => {
         setCurrentColumn(columnId);
-        if (orderColumn === sortValue) {
+        if (orderColumn.join('.') === sortValue) { // Compare the joined array to sortValue
             setOrder(order === 'asc' ? 'desc' : 'asc');
         } else {
-            setOrderColumn(sortValue);
+            setOrderColumn(sortValue.split('.')); // Split sortValue into an array and set it as orderColumn
             setOrder('desc');
         }
     };
+
 
     /* Orders the data in the columns according to the state value in orderColumn, either asc or desc depending on order */
     const filteredJobs = state.jobs?.sort((a, b) => {
