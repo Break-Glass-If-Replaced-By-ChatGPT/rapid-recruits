@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# Rapid Recruit Job Board 👨‍💼👩‍💼
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Rapid Recruit is a job board where job seekers can search and apply for amazing jobs based on their needs 🙌🏻
 
-## Available Scripts
+## Technologies Used
 
-In the project directory, you can run:
+- React
+- Material UI
+- Node.js
+- Express
 
-### `yarn start`
+## Installation 💻
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+git clone https://github.com/yourusername/rapid-recruit.git
+```
 
-### `yarn test`
+2. Install Dependancies 
+`cd rapid-recruits
+yarn`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Start the development server:
+`yarn start`
 
-### `yarn build`
+This will start the server at http://localhost:3000
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Features 🤖
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Job Seekers can browse job listings
+- Job Seekers can apply fitlers 
+- You can filter down jobs based on your location, desired salary and field of interest 
+- You can use 2 parameters to search 
+- Applicaiton page has email verification feature to make sure the input email is proper
+- Desmonstrates validation when you are done submiting, shows if you are submission was sucessful. 
 
-### `yarn eject`
+## Roadmap 🛣
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Implement user validation
+- Add search functionality to allow job seekers to find job listings based on keywords and filters
+- Improve user experience with additional features and enhancements
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## App Walkthrough 🚀
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Homepage 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- View featured job listings
+- View all job listings
 
-## Learn More
+### Search 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Search for job listings based on keywords
+- Apply a filter to narrow down search results
+- Reset filters to view all results
+- Search directly from the nav bar
+- Use one or two parameters to search for jobs
+- Filter search results based on relevance, date posted, or salary range
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Job Listing
 
-### Code Splitting
+- Select a job listing to view details
+- View additional details on a new page
+- Go back to search results using the back button
+- Hit the apply button to apply for the job listing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Apply for Job
 
-### Analyzing the Bundle Size
+- Fill out job application form with personal information and resume
+- Validate user input to ensure all required fields are filled out
+-Submit resume
+- Submit Cover letter
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contributing💡
 
-### Making a Progressive Web App
+To add on our team’s work, please fork the repository, please your change and submit a pr. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
