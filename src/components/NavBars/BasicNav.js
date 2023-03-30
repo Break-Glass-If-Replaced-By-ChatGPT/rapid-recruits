@@ -1,94 +1,100 @@
-import * as React from 'react';
-import { AppBar, Container, Toolbar, Typography, Box, IconButton, Menu, MenuItem, Tooltip, Avatar } from '@mui/material'
+// Import required libraries and components
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Menu,
+  MenuItem,
+  Avatar,
+} from "@mui/material";
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// Define the list of settings for the user menu
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
+// Define the main Nav component
 export const BasicNav = () => {
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  // Use the useState hook to manage the state of the user menu
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+  // Define a function to open the user menu
+  const handleOpenMenu = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+  // Define a function to close the user menu
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
   };
 
+  // Define styles for the navigation bar components
+  const toolbarStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    backgroundColor: "#1E90FF",
+  };
+
+  const logoWrapperStyle = {
+    display: "flex",
+    alignItems: "center",
+    textDecoration: "none",
+    color: "#fff",
+  };
+
+  const logoImgStyle = {
+    width: "50px",
+    height: "50px",
+  };
+
+  // Render the navigation bar
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 0 }}>
-            <img src="RapidRecruitsLogoWhite.png" alt="Rapid Recruits Logo: Bring Your Dream, Build Your Future" style={{ display: { xs: 'none', md: 'flex' }, width: 50, height: 50, marginRight: 16 }} />
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-                flexGrow: 0,
-              }}
-            >
-              RAPID RECRUITS
-            </Typography>
-          </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+      <Toolbar style={toolbarStyle}>
+        <Link to="/" style={logoWrapperStyle}>
+          <img
+            src="RapidRecruitsLogoWhite.png"
+            alt="Rapid Recruits Logo: Bring Your Dream, Build Your Future"
+            style={{
+              display: { xs: "none", md: "flex" },
+              width: 50,
+              height: 50,
+              marginRight: 16,
             }}
-          >
-            RAPID RECRUITS
+          />
+
+          <Typography variant="h6" sx={{ ml: 1 }}>
+            Rapid Recruits
           </Typography>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
+        </Link>
+        <IconButton onClick={handleOpenMenu}>
+          <Avatar alt="User avatar" src="/static/images/avatar/2.jpg" />
+        </IconButton>
+        <Menu
+          id="user-menu"
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleCloseMenu}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+        >
+          {settings.map((setting) => (
+            <MenuItem key={setting} onClick={handleCloseMenu}>
+              <Typography>{setting}</Typography>
+            </MenuItem>
+          ))}
+        </Menu>
+      </Toolbar>
     </AppBar>
   );
-}
+};
+
+// Export the Nav component
+export default BasicNav;
