@@ -57,7 +57,7 @@ export function ResumeForm() {
   return (
     <div style={{ display: 'flex' }}>
       <form onSubmit={handleSubmit}>
-        <Typography variant="h6">Submit Your Resume</Typography>
+        <Typography variant="h3" align='center'>Submit Your Resume</Typography>
         <TextField
           label="Name"
           variant="outlined"
