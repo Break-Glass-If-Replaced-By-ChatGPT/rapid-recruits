@@ -1,9 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { prettify } from '../../common/utility'
 import { Box, Table, TableBody, TableCell, TableContainer, TablePagination, TableHead, TableRow, TableSortLabel, Typography, Stack } from '@mui/material';
-import {SectionTitle, TablePaper } from '../styles';
+import { TablePaper } from '../styles';
 import { StateContext } from "../../App";
-import { Sheet } from '@mui/joy';
 
 export const HalfJobsList = () => {
 
@@ -75,15 +74,15 @@ export const HalfJobsList = () => {
     };
 
   return (
-    <TablePaper elevation={3} variant="outlined" sx={{ height: '100%'}}>
+    <TablePaper elevation={0} variant="outlined" sx={{ height: '100%'}}>
         <TableContainer sx={{ flexGrow: 1, overflow: 'auto', height: 'calc(100% - 52px)' }} >
             <Table stickyHeader aria-label="sticky table" >
             <TableHead>
               <TableRow>
                 <TableCell>
                   <Stack direction="column" spacing={0}>
-                    {headers.slice(0, 3).map((header) => (
-                      <TableCell key={header.id} sx={{ height: '24px' }}>
+                    {headers.slice(0, 3).map((header, idx) => (
+                      <TableCell key={header.id} data-testid={`header-${idx}`} sx={{ height: '24px' }}>
                         <TableSortLabel active={currentColumn === header.id} direction={order} onClick={() => handleSort(header.id, colName(header.id))}>
                           {header.id}
                         </TableSortLabel>
@@ -116,6 +115,7 @@ export const HalfJobsList = () => {
                         <TableRow
                             key={index}
                             sx={{ '&:last-child td, &:last-child th': { border: 0, verticalAlign: 'top' }, cursor: 'pointer', '&:hover': {backgroundColor: 'rgba(0, 0, 0, 0.04)', }}}
+                            data-testid={`job-row-${index}`}
                             onClick={() => dispatch({ type: 'setSelectedJob', payload: row })}
                         >
                           <TableCell>
