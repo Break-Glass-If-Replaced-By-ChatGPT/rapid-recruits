@@ -84,9 +84,9 @@ export const JobsList = () => {
                         <Table stickyHeader aria-label="sticky table">
                         <TableHead >
                             <TableRow >
-                                {headers.map((column) => (
+                                {headers.map((column, idx) => (
                                     !!(state.jobs?.length) &&
-                                    <TableCell key={column.id}>
+                                    <TableCell key={column.id} data-testid={`header-${idx}`}>
                                         <TableSortLabel active={currentColumn === column.id} direction={order} onClick={() => handleSort(column.id, colName(column.id))}>
                                             {column.id}
                                         </TableSortLabel>
@@ -101,6 +101,7 @@ export const JobsList = () => {
                                     <TableRow
                                         key={index}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0, verticalAlign: 'top' }, cursor: 'pointer', '&:hover': {backgroundColor: 'rgba(0, 0, 0, 0.04)', }}}
+                                        data-testid={`job-row-${index}`}
                                         onClick={() => dispatch({ type: 'setSelectedJob', payload: row })}
                                     >
                                         <TableCell scope="row" sx={{ verticalAlign: 'top' }}>{prettify(row.title)}</TableCell>
